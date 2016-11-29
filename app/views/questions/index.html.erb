@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Questions</h1>
+
+<table>
+  <thead>
+    <tr>      
+    <th>votes</th>
+    <th>Qtitle</th>
+      <th>Qtext</th>
+      <th>Qpoint</th>
+      <th>Approved</th>
+      <th>Category</th>
+      <th>Sub category</th>
+      <th>Yazan</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+      <td><%= question.get_upvotes.size %></td>
+        <td><%= question.qtitle %></td>
+        <td><%= question.qtext %></td>
+        <td><%= question.qpoint %></td>
+        <td><%= question.approved %></td>
+        <td><%= question.category.cat_name %></td>
+        <td><%= question.sub_category.sub_cat_name %></td>
+         <td><%= question.user.email %></td>
+        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to "upvote", like_question_path(question), method: :put %></td>
+        <td><%= link_to "downvote", dislike_question_path(question), method: :put %></td>
+        <% if question.user == current_user %>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>        
+
+
+        <% end %>
+      </tr>
+    
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+
+<%= link_to 'Soru Sor', new_question_path %>
+<%= link_to 'Yeni Blog Olustur', new_blog_path %>
+

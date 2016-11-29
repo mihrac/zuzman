@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  qtitle: MyString
+  qtext: MyText
+  qpoint: 1
+  approved: false
+  category: one
+  sub_category: one
+
+two:
+  qtitle: MyString
+  qtext: MyText
+  qpoint: 1
+  approved: false
+  category: two
+  sub_category: two
