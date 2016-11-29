@@ -1,0 +1,38 @@
+
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<h1>Questions</h1>
+
+  
+ <div class="container">      </div>
+
+  <div class="container">
+    <% @questions.each do |question| %>
+      <tr>
+      <td><%= question.get_upvotes.size %></td>
+        <td><%= question.qtitle %></td>
+        <td><%= question.qtext %></td>
+        <td><%= question.category.cat_name %></td>
+        <td><%= question.sub_category.sub_cat_name %></td>
+         <td><%= question.user.email %></td>
+        <td><%= link_to 'Show', question %></td>
+        <td><%= link_to "upvote", like_question_path(question), method: :put %></td>
+        <td><%= link_to "downvote", dislike_question_path(question), method: :put %></td>
+        <% if question.user == current_user %>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>        
+
+
+        <% end %>
+      </tr>
+    
+    <% end %>
+<br>
+</div>
+</div>
+
+
+<%= link_to 'Soru Sor', new_question_path %>
+<%= link_to 'Yeni Blog Olustur', new_blog_path %>
+

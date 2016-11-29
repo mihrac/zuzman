@@ -1,4 +1,3 @@
-<div class="container">
 <li>
   <%= comment.body %> - by <%= comment.user.email %>
   <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
@@ -10,10 +9,12 @@
       <%= f.submit "Reply"  %>
       <% end %>
 
-  <ul id="comments-list" class="comments-list">
+  <ul>
       <%= render partial: 'comments/comment', collection: comment.comments %>
   </ul>
 
 </li>
 
-</div>
+<div> >------------------------------------------------------------------------------------------------- </div>
+
+
