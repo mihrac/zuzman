@@ -2,8 +2,9 @@
 <li>
   <%= comment.body %> - by <%= comment.user.email %>
   <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
-  <td><%= comment.get_upvotes.size %></td>
-  <td><%= link_to "upvote", like_comment_comment_path(comment, comment), method: :put %></td>
+  <b class="btn btn-info btn-xs"> <%= comment.get_upvotes.size  %></b>
+  <td><%= link_to "+", like_comment_comment_path(comment, comment), method: :put,  :class => 'btn btn-success btn-xs'%></td>
+  <td><%= link_to "-", dislike_comment_comment_path(comment, comment), method: :put,  :class => 'btn btn-danger btn-xs' %></td>
 
   <%= form_for [comment, Comment.new] do |f| %>
       <%= f.text_area :body, placeholder: "Add a Reply" %><br/>

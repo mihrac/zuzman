@@ -62,6 +62,18 @@ class BlogsController < ApplicationController
     end
   end
 
+  def upvote
+  @blog = Blog.find(params[:id])
+  @blog.upvote_by current_user
+  redirect_to blogs_path
+end
+
+def downvote
+  @blog = Blog.find(params[:id])
+  @blog.downvote_by current_user
+  redirect_to blogs_path
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog

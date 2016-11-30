@@ -41,6 +41,8 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+    if @question.user == current_user
+
     respond_to do |format|
       if @question.update(question_params)
         format.html { redirect_to @question, notice: 'Question was successfully updated.' }
@@ -49,6 +51,11 @@ class QuestionsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
+     
+     
+    end
+     else
+      redirect_to :back, notice: "You can't edit this content!"
     end
   end
 

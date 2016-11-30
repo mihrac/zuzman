@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :tags
-  resources :blogs do
-  	resources :comments
+
+   resources :blogs do
+    member do
+    put "like", to: "blogs#upvote"
+    put "dislike", to: "blogs#downvote"
   end
+    resources :comments
+  end
+
 
   
   resources :questions do
@@ -22,9 +28,7 @@ Rails.application.routes.draw do
   resources :comments do
 
   	resources :comments do
-  		put "like", to: "comments#upvote"
-    put "dislike", to: "comments#downvote"
-  		 	member do
+    	member do
   	put "like", to: "comments#upvote"
     put "dislike", to: "comments#downvote"
 end
