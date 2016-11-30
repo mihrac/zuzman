@@ -25,17 +25,14 @@
   </div>
 
   <div class="field">
-     <%= f.collection_select(:category_id, Category.all, :id, :cat_name, 
-    { prompt: 'Select a category' }, { id: 'category-select' }) %>
-  
- </div>
- <p></p>
- <div class="field"> <%= f.grouped_collection_select :sub_category_id, Category.all, :sub_categories, 
-    :cat_name, :id, :sub_cat_name, { include_blank: 'Select a sub category' }, { id: 'sub_category-select' } %>
-      
-    </div>
+    <%= f.label :category_id %>
+    <%= select_tag "category_id", options_from_collection_for_select(Category.all, "id", "cat_name") %>
+  </div>
 
- <p></p>
+  <div class="field">
+    <%= f.label :sub_category_id %>
+    <%= select_tag "category_id", options_from_collection_for_select(SubCategory.all, "id", "sub_cat_name") %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

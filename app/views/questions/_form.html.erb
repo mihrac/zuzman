@@ -1,5 +1,10 @@
+
+<% if question.user == current_user %>
+
+
 <%= form_for(question) do |f| %>
-  <% if question.errors.any? %>
+
+ <% if question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
@@ -31,17 +36,24 @@
     <%= f.check_box :approved %>
   </div>
 
-  <div class="field">
-    <%= f.label :category_id %>
-    <%= f.text_field :category_id %>
-  </div>
+   <div class="field">
+     <%= f.collection_select(:category_id, Category.all, :id, :cat_name, 
+    { prompt: 'Select a category' }, { id: 'category-select' }) %>
+  
+ </div>
+ <p></p>
+ <div class="field"> <%= f.grouped_collection_select :sub_category_id, Category.all, :sub_categories, 
+    :cat_name, :id, :sub_cat_name, { include_blank: 'Select a sub category' }, { id: 'sub_category-select' } %>
+      
+    </div>
 
-  <div class="field">
-    <%= f.label :sub_category_id %>
-    <%= f.text_field :sub_category_id %>
-  </div>
+ <p></p>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<% else %>
+<p class="bg-danger">You don't have permission to editing this Question!</p>
+<% end %>
+

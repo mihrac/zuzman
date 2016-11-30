@@ -7,56 +7,33 @@
   </head>
 
   <body>
-<div class="container">
-
-<p id="notice"><%= notice %></p>
-
-<div><h1>Questions</h1></div>
-
-
-  
-
-    <% @questions.each do |question| %>
-       <div class="container">     
-         <div class="row">
- 
-
-      
-        <div class="media">
-        <h4><%= link_to question.qtitle, question %></h4>
-        <p><%= truncate( question.qtext, length: 100) %></p>
-        </div>
-        <b class="btn btn-default btn-xs">Category : </b><b class="btn btn-default btn-xs"><%= question.category.cat_name %></b><b class="btn btn-default btn-xs"><%= question.sub_category.sub_cat_name %></b>
-        
-         <p><%= question.user.email %></p>
-        <div class="container">   
-        <b><%= link_to 'Read', question, :class => 'btn btn-primary btn-xs' %></b> 
+ <% @questions.each do |question| %>
+<div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-gift"><b class="btn btn-primary btn-xs"> <%= question.get_upvotes.size %></b></i> <%= link_to question.qtitle, question %> </h4><h5><%= question.user.email %></h5>
+                    </div>
+                    <div class="panel-body">
+                        <p><%= truncate( question.qtext, length: 100) %></p>
+                        <b class="btn btn-default btn-xs">Category : </b><b class="btn btn-default btn-xs"><%= question.category.cat_name %></b><b class="btn btn-default btn-xs"><%= question.sub_category.sub_cat_name %></b>
+                        
+                        <b><%= link_to 'Read', question, :class => 'btn btn-primary btn-xs' %></b> 
         <b><%= link_to "+", like_question_path(question), method: :put, :class => 'btn btn-success btn-xs'%></b>
         <b><%= link_to "-", dislike_question_path(question), method: :put, :class => 'btn btn-danger btn-xs' %></b>
-        <b class="btn btn-info btn-xs"> Q. Votes: <%= question.get_upvotes.size %></b>
-          <% if question.user == current_user %>
+        
+        <% if question.user == current_user %>
         <b><%= link_to 'Edit', edit_question_path(question), :class => 'btn btn-default btn-xs'%></b>
         <b><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-xs'  %></b>  
         <% end %>
-        </div>
-        
-        
-            
-</div>
-</div>
-
-
-      </tr>
-    
+                    </div>
+                </div>
+            </div>
     <% end %>
 
 
 
 
 
-<%= link_to 'Soru Sor', new_question_path %>
-<%= link_to 'Yeni Blog Olustur', new_blog_path %>
-</div>
 </body>
 </html>
 
