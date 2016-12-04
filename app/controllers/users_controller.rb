@@ -1,12 +1,9 @@
 class UsersController < ApplicationController
-  def showmhow
-  	@user = User.find(params[:id])
-  	@user_questions = @user.questions
+
   	
   	
   	
 
-  end
 
 
   def show
@@ -16,7 +13,8 @@ class UsersController < ApplicationController
   end
 
 
-
+def edit
+end
 
 
 

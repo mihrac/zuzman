@@ -8,8 +8,15 @@
   </head>
   <body>
   	
- 
+ <% if @user == current_user %>
+<%= link_to 'edit', edit_user_registration_path %>
 
+<% end %>
+
+<div class="">
+	<%= image_tag @user.avatar.url(:medium) %>
+
+</div>
 
  <div class="cotainer"> 
 <h4><%= @user.full_name %>'s Profil page</h4>
