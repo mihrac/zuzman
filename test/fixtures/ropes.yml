@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ropeable_id: 1
+  ropeable_type: MyString
+  ropeable: one
+  ropeable_type: Ropeable
+
+two:
+  ropeable_id: 1
+  ropeable_type: MyString
+  ropeable: two
+  ropeable_type: Ropeable

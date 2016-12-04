@@ -15,3 +15,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+<script language="javascript">
+
+function showCustomField(choice)
+{
+  if (choice == "Student"){
+    document.getElementById("grade_div").style.display = 'block'      
+    document.getElementById("year_div").style.display = 'none'            
+  } else if (choice == "Alumni"){
+    document.getElementById("year_div").style.display = 'block'        
+    document.getElementById("grade_div").style.display = 'none'      
+  }
+}
+</script>

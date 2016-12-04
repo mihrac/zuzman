@@ -8,6 +8,8 @@ class QuestionsController < ApplicationController
     @questions = Question.all
   end
 
+
+
   # GET /questions/1
   # GET /questions/1.json
   def show
@@ -28,6 +30,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build(question_params)
 
     respond_to do |format|
+      
       if @question.save
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
@@ -84,7 +87,9 @@ def downvote
 end
 
 
-
+def score
+current_user.questions.map { |question| [ question.name, question.score ] }
+  end
 
 
 

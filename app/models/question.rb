@@ -3,5 +3,7 @@ class Question < ApplicationRecord
   belongs_to :category
   belongs_to :sub_category
   belongs_to :user
+  belongs_to :ropeable, polymorphic: true
+
   acts_as_votable
 end

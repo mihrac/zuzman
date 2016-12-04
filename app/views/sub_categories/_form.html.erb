@@ -11,14 +11,15 @@
     </div>
   <% end %>
 
+<div class="field">
+     <%= f.collection_select(:category_id, Category.all, :id, :cat_name, 
+    { prompt: 'Select a category' }, { id: 'category-select' }) %>
+  
+ </div>
+ <p></p>
   <div class="field">
     <%= f.label :sub_cat_name %>
     <%= f.text_field :sub_cat_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :category_id %>
-    <%= f.text_field :category_id %>
   </div>
 
   <div class="actions">

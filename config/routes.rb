@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
   devise_for :users
   resources :tags
 
@@ -35,6 +37,10 @@ end
 	end
   end
 
-root 'questions#index'
+  resources :users do
+    resources :questions
+  end
+
+root 'home#index'
 
 end

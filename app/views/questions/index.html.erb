@@ -11,15 +11,15 @@
 <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-gift"><b class="btn btn-primary btn-xs"> <%= question.get_upvotes.size %></b></i> <%= link_to question.qtitle, question %> </h4><h5><%= question.user.email %></h5>
+                        <h5><i class="fa fa-fw fa-gift"> <b><%= link_to "+", like_question_path(question), method: :put, :class => 'btn btn-success btn-xs'%></b><b class="btn btn-primary btn-xs"> <%= question.get_upvotes.size %></b><b><%= link_to "-", dislike_question_path(question), method: :put, :class => 'btn btn-danger btn-xs' %></b></i> <%= link_to question.qtitle, question %> <small> by <%= link_to question.user.username %></small></h5>  
                     </div>
                     <div class="panel-body">
                         <p><%= truncate( question.qtext, length: 100) %></p>
                         <b class="btn btn-default btn-xs">Category : </b><b class="btn btn-default btn-xs"><%= question.category.cat_name %></b><b class="btn btn-default btn-xs"><%= question.sub_category.sub_cat_name %></b>
                         
                         <b><%= link_to 'Read', question, :class => 'btn btn-primary btn-xs' %></b> 
-        <b><%= link_to "+", like_question_path(question), method: :put, :class => 'btn btn-success btn-xs'%></b>
-        <b><%= link_to "-", dislike_question_path(question), method: :put, :class => 'btn btn-danger btn-xs' %></b>
+       
+        
         
         <% if question.user == current_user %>
         <b><%= link_to 'Edit', edit_question_path(question), :class => 'btn btn-default btn-xs'%></b>

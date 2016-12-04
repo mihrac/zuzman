@@ -1,20 +1,53 @@
 <div class="container">
-<li>
+
+
+
+    
+
+  
+<div class="container">
+    <blockquote>
+       
   <%= comment.body %> - by <%= comment.user.email %>
   <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
   <b class="btn btn-info btn-xs"> <%= comment.get_upvotes.size  %></b>
   <td><%= link_to "+", like_comment_comment_path(comment, comment), method: :put,  :class => 'btn btn-success btn-xs'%></td>
   <td><%= link_to "-", dislike_comment_comment_path(comment, comment), method: :put,  :class => 'btn btn-danger btn-xs' %></td>
-
-  <%= form_for [comment, Comment.new] do |f| %>
+    </blockquote>
+    
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" 
+              href="#collapseOne">
+              Click to reply
+            </a>
+          </h4>
+        </div>
+        <%= form_for [comment, Comment.new] do |f| %>
+        <div id="collapseOne" class="panel-collapse collapse">
+     
       <%= f.text_area :body, placeholder: "Add a Reply" %><br/>
-      <%= f.submit "Reply"  %>
+      <%= f.submit "Reply"  %> <br/>
       <% end %>
 
-  <ul id="comments-list" class="comments-list">
+      <ul id="comments-list" class="comments-list">
       <%= render partial: 'comments/comment', collection: comment.comments %>
   </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+  
 
 </li>
 
 </div>
+
+

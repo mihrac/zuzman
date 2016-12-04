@@ -9,7 +9,9 @@
   </head>
 
   <body>
-  
+    <%= notice %> 
+  <%= alert %> 
+
 
   <!-- Second navbar for sign in -->
     <nav class="navbar navbar-default">
@@ -37,6 +39,8 @@
             <li> <%= link_to "Bloglar", blogs_path %></li>  
              <% if user_signed_in? %>
             <li><%= link_to "Cikis Yap", destroy_user_session_path, method: :delete %></li>
+            
+
                <% else %>
            <li><%= link_to "Giris Yap", new_user_session_path %></li>
             <li> <%= link_to "Uye Ol", new_user_registration_path %></li>

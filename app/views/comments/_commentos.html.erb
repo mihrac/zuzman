@@ -1,20 +1,8 @@
-<li>
-  <%= comment.body %> - by <%= comment.user.email %>
-  <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
-  <td><%= comment.get_upvotes.size %></td>
-  <td><%= link_to "upvote", like_comment_comment_path(comment, comment), method: :put %></td>
+<div>
+  
 
-  <%= form_for [comment, Comment.new] do |f| %>
-      <%= f.text_area :body, placeholder: "Add a Reply" %><br/>
-      <%= f.submit "Reply"  %>
-      <% end %>
+<%= comment.user.email %>
 
-  <ul>
-      <%= render partial: 'comments/comment', collection: comment.comments %>
-  </ul>
+  
 
-</li>
-
-<div> >------------------------------------------------------------------------------------------------- </div>
-
-
+</div>
