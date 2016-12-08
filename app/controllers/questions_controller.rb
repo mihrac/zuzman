@@ -4,15 +4,21 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   # GET /questions.json
+
+
+
   def index
     @questions = Question.all
+
   end
 
+   
 
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+
   end
 
   # GET /questions/new
@@ -77,13 +83,13 @@ class QuestionsController < ApplicationController
 def upvote
   @question = Question.find(params[:id])
   @question.upvote_by current_user
-  redirect_to questions_path
+  redirect_to :back
 end
 
 def downvote
   @question = Question.find(params[:id])
   @question.downvote_by current_user
-  redirect_to questions_path
+  redirect_to :back
 end
 
 
@@ -94,13 +100,20 @@ current_user.questions.map { |question| [ question.name, question.score ] }
 
 
   private
+  def self.listing(page)
+    order(created_at: :desc).page(params[:page]).per(20)
+  end
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def question_params
+     def question_params
       params.require(:question).permit(:qtitle, :qtext, :qpoint, :approved, :category_id, :sub_category_id)
     end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+   
 end

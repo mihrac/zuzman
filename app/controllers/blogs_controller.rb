@@ -65,13 +65,13 @@ class BlogsController < ApplicationController
   def upvote
   @blog = Blog.find(params[:id])
   @blog.upvote_by current_user
-  redirect_to blogs_path
+  redirect_to :back
 end
 
 def downvote
   @blog = Blog.find(params[:id])
   @blog.downvote_by current_user
-  redirect_to blogs_path
+  redirect_to :back
 end
 
   private

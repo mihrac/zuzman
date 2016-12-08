@@ -1,3 +1,4 @@
+
 <html>
   <head>
 
@@ -6,45 +7,43 @@
   </head>
 
   <body>
-<div class="container">
-
-<p id="notice"><%= notice %></p>
-
-<div><h1>Blogs</h1></div>
-
-
-  
-
-    <% @blogs.each do |blog| %>
-       <div class="container">     
-         <div class="row">
- 
-
-      
-        <div class="media">
-        <h4><%= link_to blog.btitle, blog %></h4>
-        <p><%= truncate( blog.btext, length: 100) %></p>
-        </div>
-        <b class="btn btn-default btn-xs">Category : </b><b class="btn btn-default btn-xs"><%= blog.category.cat_name %></b><b class="btn btn-default btn-xs"><%= blog.sub_category.sub_cat_name %></b>
+ <% @blogs.each do |blog| %>
+<div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5><i class="fa fa-fw fa-gift"> <b><%= link_to "+", like_blog_path(blog), method: :put, :class => 'btn btn-success btn-xs'%></b><b class="btn btn-primary btn-xs"> <%= blog.get_upvotes.size %></b><b><%= link_to "-", dislike_blog_path(blog), method: :put, :class => 'btn btn-danger btn-xs' %></b></i> <%= link_to blog.btitle, blog %> <small> by <%= link_to blog.user.username%></small></h5>  
+                    </div>
+                    <div class="panel-body">
+                        <p><%= truncate( blog.btext, length: 100) %></p>
+                        <b class="btn btn-default btn-xs">Category : </b><b class="btn btn-default btn-xs"><%= blog.category.cat_name %></b><b class="btn btn-default btn-xs"><%= blog.sub_category.sub_cat_name %></b>
+                        
+                        <b><%= link_to 'Read', blog, :class => 'btn btn-primary btn-xs' %></b> 
+       
         
-         <p><%= blog.user.email %></p>
-        <div class="container">   
-        <b><%= link_to 'Read', blog, :class => 'btn btn-primary btn-xs' %></b> 
-        <b><%= link_to "+", like_blog_path(blog), method: :put, :class => 'btn btn-success btn-xs'%></b>
-        <b><%= link_to "-", dislike_blog_path(blog), method: :put, :class => 'btn btn-danger btn-xs' %></b>
-        <b class="btn btn-info btn-xs"> Q. Votes: <%= blog.get_upvotes.size %></b>
-          <% if blog.user == current_user %>
+        
+        <% if blog.user == current_user %>
         <b><%= link_to 'Edit', edit_blog_path(blog), :class => 'btn btn-default btn-xs'%></b>
         <b><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-xs'  %></b>  
         <% end %>
-        </div>
-        
-        
-            
-</div>
-</div>
-
-
-      </tr>
-    
+                    </div>
+                </div>
+            </div>
     <% end %>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

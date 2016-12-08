@@ -1,14 +1,24 @@
-
-
+<div class="row">
+	<div class="col-md-10">
+		
 <div>
-	
-
-<%= link_to question.qtitle, question %>
-
-<b> (Score: <%= question.cached_votes_total%>)</b>
+	<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5><i class="fa fa-fw fa-gift"> <b><%= link_to "+", like_question_path(question), method: :put, :class => 'btn btn-success btn-xs'%></b><b class="btn btn-primary btn-xs"> <%= question.get_upvotes.size %></b><b><%= link_to "-", dislike_question_path(question), method: :put, :class => 'btn btn-danger btn-xs' %></b></i> <%= link_to question.qtitle, question %> <small> by <%= link_to question.user.username %></small></h5>  
+                    </div>
 
 
 
    
 
 </div>
+
+	</div>
+
+
+
+
+
+</div>
+</div>
+

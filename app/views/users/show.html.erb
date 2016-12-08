@@ -7,31 +7,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-  	
- <% if @user == current_user %>
-<%= link_to 'edit', edit_user_registration_path %>
 
-<% end %>
-
-<div class="">
-	<%= image_tag @user.avatar.url(:medium) %>
-
-</div>
-
- <div class="cotainer"> 
-<h4><%= @user.full_name %>'s Profil page</h4>
-<div class="panel panel-default">
-	<h5>Username : <%=@user.username %></h5>
-	<h5>E-mail : <%=@user.email %></h5>
-	<div class="info"></div>
-	<h5>About</h5> <br>
-<p>	<%=@user.about %></p>
-</div>
-<br>
-
-<div class="container">
-
-<% sum = 0 %>
+  <% sum = 0 %>
 <% @user.questions.each do |question| %>
     <% sum += question.cached_votes_up %>
 
@@ -49,51 +26,49 @@
     <% comm += comment.cached_votes_up %>
 
 <% end %>
+  	
+ 
+<% total = sum + ques + comm  %>
 
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
 
-<div class="span6 pull-left">
+		<%= image_tag @user.avatar.url(:medium) %> </div>
+		<div class="col-md-3">
 
+		<div class="row"><h4><%= @user.full_name %>'s Profil page</h4></div>
+		<div class="row"><h5>Username : <%=@user.username %></h5></div>
+		<div class="row"><h5>E-mail : <%=@user.email %></h5></div>
+		<div class="row"><h5>About</h5> <p><%=@user.about %></p></div>
+		<div class="row"><h6>Total User Votes : <button class="btn-primary"><%= "#{total}" %> </button>	</h6></div>
+
+		</div>
+		<% if @user == current_user %>
+		<div class="col-md-2">
+	<button class="btn-toolbar"><%= link_to 'Edit My Profile', edit_user_registration_path %></button>	
+<% end %>
 
 </div>
-
-<div class="span6 pull-left">
-	<div class="span6 pull-left">
-<h6>Questions by <%= @user.username %> (<%= @user.questions.count %>) Total Question Upvotes: <%= "#{sum}" %> </h6>
-<div class="span6 pull-left">
-<%=render @user.questions %>
-
-</div>
-</div>
-
-	<div class="span6 pull-left">
-	<h6>Blogs by <%= @user.username %> (<%= @user.blogs.count %>) Total Blogs Upvotes: <%= "#{ques}" %> </h6> <br>
-	
-	<div class="span6 pull-left">
-
-<%=render @user.blogs %>
-
-</div>
-
-
-	</div>
-
-	<div class="span6 pull-right">
-<h6 class="text-right"> |  Comments by <%= @user.username %> (<%= @user.comments.count %>) Total Comments Upvotes: <%= "#{comm}" %>  </h6>
-
-
-	</div>
-
-	<div class="span6 pull-left">
 		
-
-	
-
-
 	</div>
 
 
-	
+
+<div class="row">
+	<div class="col-md-4">
+	<h6>Questions by <%= @user.username %> (<%= @user.questions.count %>) Total Question Upvotes: <%= "#{sum}" %> </h6>
+	<div class="row"> <%=render @user.questions %></div>
+	</div>
+
+	<div class="col-md-4">
+		<h6>Blogs by <%= @user.username %> (<%= @user.blogs.count %>) Total Blogs Upvotes: <%= "#{ques}" %> </h6>
+		<div class="row"> <%=render @user.blogs %> </div>
+	</div>
+	<div class="col-md-4">
+		<h6 class="text-right"> |  Comments by <%= @user.username %> (<%= @user.comments.count %>) Total Comments Upvotes: <%= "#{comm}" %>  </h6>
+	</div>
 </div>
 
 
@@ -103,19 +78,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 </div>
-</div>
+
+
+
+
+
+
 
 </body>
 </html>

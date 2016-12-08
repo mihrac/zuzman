@@ -1,27 +1,110 @@
 <html>
   <head>
 
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Important Owl stylesheet -->
+<link rel="stylesheet" href="owl-carousel/owl.carousel.css">
+ 
+<!-- Default Theme -->
+<link rel="stylesheet" href="owl-carousel/owl.theme.css">
+ 
+<!--  jQuery 1.7+  -->
+<script src="jquery-1.9.1.min.js"></script>
+ 
+<!-- Include js plugin -->
+<script src="assets/owl-carousel/owl.carousel.js"></script>
   </head>
 
   <body>
 
-<div class="span6 pull-left"">
-<h4>All Questions</h4>
+
+  <div class="container">
+  <!--Ust Satir-->
+<div class="row">
+
+
+<div class="owl-carousel">
+<% @questions.order('cached_votes_up DESC').limit(15).each do |question| %>
+  <div>  <%= link_to question.qtitle, question %> <br>
+  <%= truncate(question.qtext, lenght: 50) %> <br>
+  <b class="btn btn-info btn-xs"> <%= question.cached_votes_up %> </b>
+  <%= "asked by" + question.user.username %>
+
+
+   </div>
+ 
+  <% end %>
+</div>
+
+
+
+</div>
+<!-- icerik satiri -->
+  <div class="row">
+
+  <!--kolon 1 -->
+  <div class="col-md-6">
+  <h3>LAST QUESTIONS</h3>
+ <% @questions.order(id: :desc).limit(3).each do |question| %>
+<div class="row"> 
+                <div class="panel panel-left">
+                    <div class="panel-heading">
+                        <h5><i class="fa fa-fw fa-gift"> <b><%= link_to "+", like_question_path(question), method: :put, :class => 'btn btn-success btn-xs'%></b><b class="btn btn-primary btn-xs"> <%= question.get_upvotes.size %></b><b><%= link_to "-", dislike_question_path(question), method: :put, :class => 'btn btn-danger btn-xs' %></b></i> <%= link_to question.qtitle, question %> <small> by <%= link_to question.user.username %></small></h5>  
+                    </div>
+                    <div class="panel-body">
+                        <p><%= truncate( question.qtext, length: 100) %></p>
+                        <b class="btn btn-default btn-xs">Category : </b><b class="btn btn-default btn-xs"><%= question.category.cat_name %></b><b class="btn btn-default btn-xs"><%= question.sub_category.sub_cat_name %></b>
+                        
+                        <b><%= link_to 'Read', question, :class => 'btn btn-primary btn-xs' %></b> 
+       
+        
+        
+        <% if question.user == current_user %>
+        <b><%= link_to 'Edit', edit_question_path(question), :class => 'btn btn-default btn-xs'%></b>
+        <b><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-xs'  %></b>  
+        <% end %>
+                    </div>
+                </div>
+            </div>
+    <% end %>
+</div>
+
+<!-- kolon 2 -->
+
+<div class="col-md-6">
 	
-<%= render @questions %>
+	<h4>Last Blogs</h4>
 
+<% @blogs.order(id: :desc).limit(3).each do |blog| %>
+<div class="row"> 
+                <div class="panel panel-left">
+                    <div class="panel-heading">
+                        <h5><i class="fa fa-fw fa-gift"> <b><%= link_to "+", like_blog_path(blog), method: :put, :class => 'btn btn-success btn-xs'%></b><b class="btn btn-primary btn-xs"> <%= blog.get_upvotes.size %></b><b><%= link_to "-", dislike_blog_path(blog), method: :put, :class => 'btn btn-danger btn-xs' %></b></i> <%= link_to blog.btitle, blog %> <small> by <%= link_to blog.user.username %></small></h5>  
+                    </div>
+                    <div class="panel-body">
+                        <p><%= truncate( blog.btext, length: 100) %></p>
+                        <b class="btn btn-default btn-xs">Category : </b><b class="btn btn-default btn-xs"><%= blog.category.cat_name %></b><b class="btn btn-default btn-xs"><%= blog.sub_category.sub_cat_name %></b>
+                        
+                        <b><%= link_to 'Read', blog, :class => 'btn btn-primary btn-xs' %></b> 
+       
+        
+        
+        <% if blog.user == current_user %>
+        <b><%= link_to 'Edit', edit_question_path(blog), :class => 'btn btn-default btn-xs'%></b>
+        <b><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-xs'  %></b>  
+        <% end %>
+                    </div>
+                </div>
+            </div>
+    <% end %>
+</div>
 
 </div>
 
-<div class="span6 pull-left"">
-	<h4>All Blogs</h4>
-
-<%= render @blogs %>
-
-
-</div>
+  	
+  </div>
 
 
 

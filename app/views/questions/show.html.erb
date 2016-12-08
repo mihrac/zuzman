@@ -1,42 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Qtitle:</strong>
-  <%= @question.qtitle %>
-</p>
-
-<p>
-  <strong>Qtext:</strong>
-  <%= @question.qtext %>
-</p>
-
-
-  <strong>Approved:</strong>
-  <%= @question.approved %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @question.category.cat_name %>
-</p>
-
-<p>
-  <strong>Sub category:</strong>
-  <%= @question.sub_category.sub_cat_name %>
-</p>
-
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
-
-
-
-<h3>Comments</h3>
+<div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5><i class="fa fa-fw fa-gift"> <b><%= link_to "+", like_question_path(@question), method: :put, :class => 'btn btn-success btn-xs'%></b><b class="btn btn-primary btn-xs"> <%= @question.get_upvotes.size %></b><b><%= link_to "-", dislike_question_path(@question), method: :put, :class => 'btn btn-danger btn-xs' %></b></i> <%= link_to @question.qtitle, @question %> <small> by <%= link_to @question.user.username %></small></h5>  
+                    </div>
+                    <div class="panel-body">
+                        <p><%= @question.qtext %></p>
+                        <b class="btn btn-default btn-xs">Category : </b><b class="btn btn-default btn-xs"><%= @question.category.cat_name %></b><b class="btn btn-default btn-xs"><%= @question.sub_category.sub_cat_name %></b>
+                        
+                        <b><%= link_to 'Read', @question, :class => 'btn btn-primary btn-xs' %></b> 
+       
+        
+        
+        <% if @question.user == current_user %>
+        <b><%= link_to 'Edit', edit_question_path(@question), :class => 'btn btn-default btn-xs'%></b>
+        <b><%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-xs'  %></b>  
+        <% end %>
+                    </div>
+                                    <h3>Comments</h3>
 
 <%= form_for [@question, Comment.new] do |f| %>
 <%= f.text_area :body, placeholder: "Add a comment" %><br/>
 <%= f.submit "Add Comment" %>
 <% end %>
 
-<ul>
+<div class="">
   <%= render(partial: 'comments/comment', collection: @question.comments) %>
-</ul>
+
+  </div>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+

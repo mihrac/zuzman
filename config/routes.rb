@@ -40,6 +40,7 @@ end
   resources :users do
     resources :questions
   end
+  
 
 root 'home#index'
 

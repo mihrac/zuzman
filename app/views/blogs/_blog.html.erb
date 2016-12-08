@@ -1,12 +1,13 @@
+
+<div class="row">
+	<div class="col-md-10">
 <div>
-	
+<div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5><i class="fa fa-fw fa-gift"> <b><%= link_to "+", like_blog_path(blog), method: :put, :class => 'btn btn-success btn-xs'%></b><b class="btn btn-primary btn-xs"> <%= blog.get_upvotes.size %></b><b><%= link_to "-", dislike_blog_path(blog), method: :put, :class => 'btn btn-danger btn-xs' %></b></i> <%= link_to blog.btitle, blog %> <small> by <%= link_to blog.user.username %></small></h5>  
+                    </div>
 
-<%= link_to blog.btitle, blog %>
-
-<b> (Score: <%= blog.cached_votes_total%>)</b>
-
-
-
-   
-
+</div>
+</div>
+</div>
 </div>
